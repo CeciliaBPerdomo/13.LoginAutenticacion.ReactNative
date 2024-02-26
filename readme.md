@@ -28,6 +28,7 @@
     - npm install react-native-screens 
     - npm install react-native-safe-area-context
     - npm install @react-navigation/native-stack
+    - npm install @react-navigation/bottom-tabs
 
 ## Iconos:
 - https://oblador.github.io/react-native-vector-icons/

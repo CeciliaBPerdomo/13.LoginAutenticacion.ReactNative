@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import Headers from '../components/Headers'
 import Categories from '../components/Categories'
 
 

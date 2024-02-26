@@ -2,8 +2,6 @@ import { StyleSheet, Text, View, Image, Pressable, useWindowDimensions } from 'r
 import { useEffect, useState } from 'react'
 
 import products from "../utils/data/productos.json"
-
-import Headers from '../components/Headers'
 import colors from '../utils/global/colors'
 
 const ProductDetail = ({ route }) => {
@@ -40,7 +38,8 @@ const ProductDetail = ({ route }) => {
         <Text>{product.description}</Text>
       </View>
 
-      <View style={[styles.containerPrice, !portait && {width: "20%", flexDirection: "column"}]}>
+      <View style={[styles.containerPrice, 
+        !portait && {width: "20%", flexDirection: "column"}]}>
         <Text style={styles.price}>
           $ {product.price}
         </Text>

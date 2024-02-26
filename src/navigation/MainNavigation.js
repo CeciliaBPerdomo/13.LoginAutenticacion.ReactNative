@@ -2,51 +2,17 @@ import { StyleSheet, StatusBar } from 'react-native'
 
 //Navegacion
 import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Headers from '../components/Headers'
+import ShopStack from './ShopStack'
 
-import Home from '../screen/Home'
-import ProductsByCategory from '../screen/ProductsByCategory'
-import ProductDetail from '../screen/ProductDetail'
+// Bottoms Tabs
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Stack = createNativeStackNavigator();
 
 const MainNavigation = () => {
     return (
         <>
             <NavigationContainer>
-                <Stack.Navigator
-                    initialRouteName='Home'
-                    screenOptions={({ route, navigation }) => {
-                        return {
-                            header: () => {
-                                return <Headers
-                                    navigation={navigation}
-                                    title={route.name === "Home" ? "Mi e-commerce" :
-                                        route.name === "ProductsByCategory" ? route.params.categorySelected :
-                                            "Detalle producto"
-                                    } />
-                            }
-                        }
-                    }}
-                >
-
-                    <Stack.Screen
-                        name="Home"
-                        component={Home}
-                    />
-
-                    <Stack.Screen
-                        name="ProductsByCategory"
-                        component={ProductsByCategory}
-                    />
-
-                    <Stack.Screen
-                        name="ProductDetail"
-                        component={ProductDetail}
-                    />
-
-                </Stack.Navigator>
+                <ShopStack />
             </NavigationContainer>
         </>
     )
