@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react'
 import products from "../utils/data/productos.json"
 import colors from '../utils/global/colors'
 
+import { useDispatch } from 'react-redux'
+import { addCartItem } from '../features/cart/cartSlice'
+
 const ProductDetail = ({ route }) => {
+  const dispatch = useDispatch()
   const {productId} = route.params
   const [product, setProduct] = useState({})
   
@@ -45,8 +49,8 @@ const ProductDetail = ({ route }) => {
         </Text>
 
         <Pressable style={styles.buyNow}>
-          <Text style={styles.buyNowText}>
-            Buy now
+          <Text style={styles.buyNowText} onPress={()=> dispatch(addCartItem(product))}>
+            Agregar al carrito
           </Text>
         </Pressable>
       </View>
