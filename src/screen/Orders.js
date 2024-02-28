@@ -7,7 +7,9 @@ const Orders = () => {
     <FlatList
       data={orders}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <OrderItem order={item} />}
+      renderItem={({ item }) => <OrderItem
+        order={item}
+      />}
     />
   )
 }
