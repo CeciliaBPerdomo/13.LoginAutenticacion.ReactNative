@@ -7,7 +7,7 @@ const Home = ({navigation}) => {
 
     return (
         <View>
-            <Counter />
+            {/* <Counter /> */}
             <Categories navigation={navigation}/>
         </View>
     )

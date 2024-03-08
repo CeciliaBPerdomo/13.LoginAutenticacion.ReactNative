@@ -30,9 +30,10 @@
 
 ## 📃 Documentación: 
     - Fuentes: https://docs.expo.dev/versions/latest/sdk/font/
+    - Iconos: https://oblador.github.io/react-native-vector-icons/
     - Navegación: https://reactnavigation.org/docs/getting-started
     - Redux: https://redux-toolkit.js.org/tutorials/quick-start
-    - Iconos: https://oblador.github.io/react-native-vector-icons/
+    - Redux Query: https://redux-toolkit.js.org/rtk-query/overview
 
 ## 📖 Información útil
     - Json: https://dummyjson.com/#google_vignette
