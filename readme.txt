@@ -4,3 +4,5 @@ Firebase:
 3. Estados unidos
 4. Modo de prueba
 5. Crear el nuevo documento, se puede importar jsons
+
+Editar regalas en Firebase para que pueda filtrar

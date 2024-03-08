@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, Image, Pressable, useWindowDimensions } from 'react-native'
 import { useEffect, useState } from 'react'
 
-import products from "../utils/data/productos.json"
+//import products from "../utils/data/productos.json"
+import { useGetProductByIdQuery } from '../app/services/shop'
 import colors from '../utils/global/colors'
 
 import { useDispatch } from 'react-redux'
@@ -10,14 +11,17 @@ import { addCartItem } from '../features/cart/cartSlice'
 const ProductDetail = ({ route }) => {
   const dispatch = useDispatch()
   const {productId} = route.params
-  const [product, setProduct] = useState({})
-  
+  //const [product, setProduct] = useState({})
+  const {data: product, isLoading} = useGetProductByIdQuery(productId)
+
   const [portait, setPortait] = useState(true)
   const { width, height } = useWindowDimensions()
 
+
   useEffect(() => {
-    const productFinded = products.find(item => item.id === productId)
-    setProduct(productFinded)
+    // const productFinded = products.find(item => item.id === productId)
+    // setProduct(productFinded)
+  
 
     if (width > height) { //esta acostado
       setPortait(false) 
@@ -27,12 +31,14 @@ const ProductDetail = ({ route }) => {
 
   }, [productId, height, width])
 
+  if(isLoading) return <View><Text>Cargando...</Text></View>
+
   return (
     <View style={styles.container}>
       <View style={[styles.content, !portait && {flexDirection: "row", gap: 10, padding: 20}]}>
         <Image
           style={[styles.image, !portait && {width: "40%", height: 200}]}
-          source={product?.images ? { uri: product?.images[0] } : null}
+          source={product?.images ? { uri: product?.thumbnail } : null}
           resizeMode="cover"
         />
       </View>

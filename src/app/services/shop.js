@@ -8,12 +8,25 @@ export const shopApi = createApi({
       getProducts: builder.query({
          query: () => "/productos.json"
       }),
+
       getCategories: builder.query({
          query: () => "/categories.json"
       }),
+
+      getProductsByCategories: builder.query({
+         query: (category) =>  `/productos.json?orderBy="category"&equalTo="${category}"`,
+         transformResponse: (response) => {
+            const data = Object.values(response) // Lo convierte en un array
+            return data
+         }
+      }),
+
+      getProductById: builder.query({
+         query: (id) => `/productos/${id}.json` 
+      })
    })
 })
 
-export const { useGetProductsQuery, useGetCategoriesQuery } = shopApi
+export const { useGetProductsQuery, useGetCategoriesQuery, useGetProductsByCategoriesQuery, useGetProductByIdQuery } = shopApi
 
 // useGetProductsQuery --> Porque es get, si es post es mutation
