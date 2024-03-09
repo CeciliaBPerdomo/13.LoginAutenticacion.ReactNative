@@ -34,6 +34,7 @@
     - Navegación: https://reactnavigation.org/docs/getting-started
     - Redux: https://redux-toolkit.js.org/tutorials/quick-start
     - Redux Query: https://redux-toolkit.js.org/rtk-query/overview
+    - Firebase Auth: https://firebase.google.com/docs/reference/rest/auth?hl=es-419
 
 ## 📖 Información útil
     - Json: https://dummyjson.com/#google_vignette
