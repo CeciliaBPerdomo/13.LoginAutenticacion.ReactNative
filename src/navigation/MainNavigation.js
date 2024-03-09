@@ -1,73 +1,24 @@
-import { StyleSheet, StatusBar, View, Text } from 'react-native'
-import colors from '../utils/global/colors';
-
 //Navegacion
 import { NavigationContainer } from '@react-navigation/native'
+import TabNavigation from './TabNavigation';
 
-// Bottoms Tabs
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import CartStack from './CartStack';
-import ShopStack from './ShopStack'
-import OrderStack from './OrderStack';
-import TabBarIcon from '../components/TabBarIcon';
-
-const Tab = createBottomTabNavigator();
+import { useState } from 'react';
+import AuthStack from './AuthStack';
 
 const MainNavigation = () => {
+
+    const [idToken, setIDToken] = useState("")
+
     return (
-        <>
             <NavigationContainer>
-                <Tab.Navigator
-                    initialRouteName='ShopStack'
-                    screenOptions={{
-                        headerShown: false,         // No muestra el encabezado del tab
-                        tabBarShowLabel: false,     // No muestra el texto del tab
-                        tabBarStyle: styles.tabBar,
-                    }}
-                >
-                    <Tab.Screen
-                        name="ShopStack"
-                        component={ShopStack}
-                        options={{
-                            tabBarIcon: ({focused}) => <TabBarIcon title="Productos" icono="home" focused={focused} />
-                        }}
-                    />
 
-                    <Tab.Screen
-                        name="CartStack"
-                        component={CartStack}
-                        options={{
-                            tabBarIcon: ({focused}) => <TabBarIcon title="Carrito" icono="shopping-cart" focused={focused} />
-                        }}
-                    />
+                { idToken ?
+                    <TabNavigation /> :
+                    <AuthStack /> 
+                }
 
-                    <Tab.Screen
-                        name="OrderStack"
-                        component={OrderStack}
-                        options={{
-                            tabBarIcon: ({focused}) => <TabBarIcon title="Ordenes" icono="list" focused={focused} />
-                        }}
-                    />
-
-                </Tab.Navigator>
             </NavigationContainer>
-        </>
     )
 }
 
 export default MainNavigation
-
-const styles = StyleSheet.create({
-    tabBar: {
-        backgroundColor: colors.green1,
-        height: 80,
-        shadowColor: "black",
-        position: "absolute",
-        left: 20,
-        right: 20,
-        bottom: 25,
-        borderRadius: 15,
-        elevation: 4
-    }
-})
