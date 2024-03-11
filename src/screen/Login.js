@@ -7,15 +7,28 @@ import fonts from '../utils/global/fonts'
 import InputForm from '../components/InputForm'
 import SubmitButton from '../components/SubmitButton'
 
+import { useLoginMutation } from '../app/services/auth'
+import { useDispatch } from 'react-redux'
+import { setUser } from "../features/auth/authSlice"
+
 
 const Login = ({navigation}) => {
+
+    const dispatch = useDispatch()
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const onSubmit = () => {
-        console.log("Formulario enviado")
-    }
+    const [triggerLogin] = useLoginMutation()
 
+    const onSubmit = async () => {
+        const { data } = await triggerLogin({email, password})
+        //console.log(data)
+        dispatch(setUser({
+            email: data.email,
+            idToken: data.idToken
+        }))
+    }
     return (
         <View style={styles.main}>
             <View style={styles.container}>

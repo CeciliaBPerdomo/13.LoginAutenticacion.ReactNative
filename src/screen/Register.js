@@ -8,16 +8,30 @@ import InputForm from '../components/InputForm'
 import SubmitButton from '../components/SubmitButton'
 import { useRegisterMutation } from '../app/services/auth'
 
+// Redux
+import { setUser } from '../features/auth/authSlice'
+import { useDispatch } from 'react-redux'
+
 const Register = ({ navigation }) => {
+
+    const dispatch = useDispatch()
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
 
-    const [ triggerRegister ] = useRegisterMutation()
+    const [triggerRegister] = useRegisterMutation()
 
-    const onSubmit = () => {
-        triggerRegister({email, password})
-        console.log("Formulario enviado")
+    const onSubmit = async () => {
+        try {
+            const { data } = await triggerRegister({ email, password })
+            dispatch(setUser({
+                email: data.email,
+                idToken: data.idToken
+            }))
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
